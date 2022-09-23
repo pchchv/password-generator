@@ -1,2 +1,2 @@
-# password-generator
-Cross-platform GUI password generator written in Python
+# Password Generator
+## Cross-platform GUI password generator written in Python
