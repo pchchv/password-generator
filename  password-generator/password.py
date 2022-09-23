@@ -1,5 +1,14 @@
+from enum import IntEnum
 from math import log2
 import secrets
+
+
+class StrengthToEntropy(IntEnum):
+    Pathetic = 0
+    Weak = 30
+    Good = 50
+    Strong = 70
+    Excellent = 120
 
 
 def create_new(length: int, characters: str) -> str:
