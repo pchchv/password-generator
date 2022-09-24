@@ -49,6 +49,13 @@ class PasswordGenerator(QMainWindow):
             f'Entropy: {password.get_entropy(length, char_num)} bit'
         )
 
+    def set_strength(self) -> None:
+        length = len(self.ui.line_password.text())
+        char_num = self.get_character_number()
+        for strength in password.StrengthToEntropy:
+            if password.get_entropy(length, char_num) >= strength.value:
+                self.ui.label_strength.setText(f'Strength: {strength.name}')
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
