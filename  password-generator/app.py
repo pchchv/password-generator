@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtWidgets import QApplication, QMainWindow, QLineEdit
 from ui_main import Ui_MainWindow
 import password
 import buttons
@@ -59,6 +59,12 @@ class PasswordGenerator(QMainWindow):
         for strength in password.StrengthToEntropy:
             if password.get_entropy(length, char_num) >= strength.value:
                 self.ui.label_strength.setText(f'Strength: {strength.name}')
+    
+    def change_password_visibility(self) -> None:
+        if self.ui.btn_visibility.isChecked():
+            self.ui.line_password.setEchoMode(QLineEdit.Normal)
+        else:
+            self.ui.line_password.setEchoMode(QLineEdit.Password)
 
 
 if __name__ == "__main__":
