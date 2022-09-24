@@ -1,7 +1,8 @@
-import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
 from ui_main import Ui_MainWindow
+import password
 import buttons
+import sys
 
 class PasswordGenerator(QMainWindow):
     def __init__(self):
@@ -21,6 +22,18 @@ class PasswordGenerator(QMainWindow):
             if getattr(self.ui, btn.name).isChecked():
                 chars += btn.value
         return chars
+    
+    def set_password(self) -> None:
+        try:
+            self.ui.line_password.setText(
+                password.create_new(
+                    length=self.ui.slider_length.value(),
+                    characters=self.get_characters())
+            )
+        except IndexError:
+            self.ui.line_password.clear()
+        self.set_entropy()
+        self.set_strength()
 
 
 if __name__ == "__main__":
