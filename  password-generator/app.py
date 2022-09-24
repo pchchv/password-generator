@@ -34,6 +34,13 @@ class PasswordGenerator(QMainWindow):
             self.ui.line_password.clear()
         self.set_entropy()
         self.set_strength()
+    
+    def get_character_number(self) -> int:
+        num = 0
+        for btn in buttons.CHARACTER_NUMBER.items():
+            if getattr(self.ui, btn[0]).isChecked():
+                num += btn[1]
+        return num
 
 
 if __name__ == "__main__":
