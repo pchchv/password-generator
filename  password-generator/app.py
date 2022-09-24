@@ -41,6 +41,13 @@ class PasswordGenerator(QMainWindow):
             if getattr(self.ui, btn[0]).isChecked():
                 num += btn[1]
         return num
+    
+    def set_entropy(self) -> None:
+        length = len(self.ui.line_password.text())
+        char_num = self.get_character_number()
+        self.ui.label_entropy.setText(
+            f'Entropy: {password.get_entropy(length, char_num)} bit'
+        )
 
 
 if __name__ == "__main__":
