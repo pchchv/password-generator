@@ -14,6 +14,8 @@ class PasswordGenerator(QMainWindow):
         self.do_when_password_edit()
         for btn in buttons.GENERATE_PASSWORD:
             getattr(self.ui, btn).clicked.connect(self.set_password)
+        self.ui.btn_visibility.clicked.connect(self.change_password_visibility)
+        self.ui.btn_copy.clicked.connect(self.copy_to_clipboard)
     
     def connect_slider_to_spinbox(self) -> None:
         self.ui.slider_length.valueChanged.connect(self.ui.spinbox_length.setValue)
@@ -65,6 +67,9 @@ class PasswordGenerator(QMainWindow):
             self.ui.line_password.setEchoMode(QLineEdit.Normal)
         else:
             self.ui.line_password.setEchoMode(QLineEdit.Password)
+    
+    def copy_to_clipboard(self) -> None:
+        QApplication.clipboard().setText(self.ui.line_password.text())
 
 
 if __name__ == "__main__":
