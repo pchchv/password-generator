@@ -22,6 +22,10 @@ class PasswordGenerator(QMainWindow):
         self.ui.spinbox_length.valueChanged.connect(self.ui.slider_length.setValue)
         self.ui.spinbox_length.valueChanged.connect(self.set_password)
     
+    def do_when_password_edit(self) -> None:
+        self.ui.line_password.textEdited.connect(self.set_entropy)
+        self.ui.line_password.textEdited.connect(self.set_strength)
+    
     def get_characters(self) -> str:
         chars = ''
         for btn in buttons.Characters:
